@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Drug Half-Life Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
     <h1>Drug Half-Life Calculator</h1>
@@ -33,9 +35,13 @@
         }
     </script>
 
-    <p>Enter a dose in MG: <input type="text" id="userDose"></p>
-    <p>Enter a half-life in hours: <input type="text" id="userHalfLife"></p>
+    <p>Enter a dose in MG: </p>
+    <input type="text" id="userDose">
+    <p>Enter a half-life in hours: </p>
+    <input type="text" id="userHalfLife">
+    <div class="button-container-div">
     <button onclick="calculateHalfLife()">Calculate Half-Life</button>
+    </div>
 
     <div id="result"></div>
 </body>
