@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drug Half-Life Calculator</title>
+</head>
+<body>
+    <h1>Drug Half-Life Calculator</h1>
+
+    <script>
+        function halflife(dose, halfLife, timeInHours) {
+            // Calculate the remaining dose using the formula: Remaining Dose = Initial Dose * (1/2)^(time / half-life)
+            const remainingDose = dose * Math.pow(0.5, timeInHours / halfLife);
+            return remainingDose;
+        }
+
+        function calculateHalfLife() {
+            const userDose = parseFloat(document.getElementById("userDose").value);
+            const userHalfLife = parseFloat(document.getElementById("userHalfLife").value);
+
+            if (!isNaN(userDose) && !isNaN(userHalfLife)) {
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = "";
+
+                // Calculate the drug's half-life after 1 day (24 hours)
+                const halfLifeAfter1Day = halflife(userDose, userHalfLife, 24);
+                resultDiv.innerHTML += `<p>The drug's half-life after 1 day is: ${halfLifeAfter1Day.toFixed(2)} MG</p>`;
+
+                for (let i = 0; i < 5; i++) {
+                    const halfLifeAfterDays = halflife(userDose, userHalfLife, i * 24);
+                    resultDiv.innerHTML += `<p>The drug's half-life after ${i} day is: ${halfLifeAfterDays.toFixed(2)} MG</p>`;
+                }
+            } else {
+                alert("Invalid input. Please enter valid numbers.");
+            }
+        }
+    </script>
+
+    <p>Enter a dose in MG: <input type="text" id="userDose"></p>
+    <p>Enter a half-life in hours: <input type="text" id="userHalfLife"></p>
+    <button onclick="calculateHalfLife()">Calculate Half-Life</button>
+
+    <div id="result"></div>
+</body>
+</html>
